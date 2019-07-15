@@ -1,0 +1,96 @@
+/* --- Wolrd --- */
+.world {
+    position: absolute;
+    width: 21.5vw;
+    height: 21.5vw;
+    
+    cursor: pointer;
+}
+
+.worlds {
+    background-image: linear-gradient(lightblue, rgb(247, 217, 170));
+}
+
+.world-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+
+.worlds>.world:nth-child(2) {
+    left: 3vw;
+    top: 17%;
+}
+
+.worlds>.world:nth-child(3) {
+    left: 24vw;
+    top: 44%;
+}
+
+.worlds>.world:nth-child(4) {
+    left: 48vw;
+    top: 21%;
+}
+
+.worlds>.world:nth-child(5) {
+    left: 74vw;
+    top: 39%;
+}
+
+.world-frame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.world-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    color: #2F4F4F;
+
+    font-size: 2.5vw;
+    text-align: center;
+    font-weight: 1000;
+}
+
+.links {
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    /* align-content: space-around; */
+    justify-content: space-around;
+    position: absolute;
+    top: 10px;
+    /* left: 0px; */
+    right: 10px;
+    width: 200px;
+    font-family: 'Playfair Display';
+}
+
+.links>a {
+    font-weight: normal;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 30px;
+}
+
+.links>a:active {
+    color: black;
+}
+
+.links>a:visited {
+    color: purple;
+}
+
+.links>a:hover {
+    transform: scale(1.02);
+}

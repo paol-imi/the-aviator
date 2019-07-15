@@ -1,0 +1,223 @@
+/* --- Game --- */
+#canvas {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    background-color: black;
+}
+
+/* --- Split ---*/
+.split {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s height;
+}
+
+.split-container {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.gutter {
+    cursor: col-resize;
+    background-color: #cccccc;
+}
+
+/* --- Blockly --- */
+.blockly-editor,
+#blockly-div {
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Menu ---*/
+.game-menu {
+    width: 680px;
+    height: 52px;
+
+    position: absolute;
+    bottom: 50px;
+    right: -590px;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.game-menu>div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.game-menu-world {
+    width: 130px;
+    height: 130px;
+    border: 1px solid black;
+    border-radius: 120px;
+    background-color: white;
+    cursor: pointer;
+    margin-right: -35px;
+}
+
+.game-menu-world>div {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 90%;
+    height: 90%;
+}
+
+.game-menu-container {
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 100px;
+    background-color: #ddd;
+    padding: 0 12px;
+}
+
+.game-menu-board {
+    height: 100%;
+    width: 58px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-menu-buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+}
+
+.board-moves {
+    font-family: 'Times New Roman';
+    font-size: 34px;
+    color: #ddd;
+    line-height: 30px;
+    stroke: 1px black;
+    text-shadow: 1.5px 1.5px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.board-color {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin-bottom: 2px;
+    border-radius: 100%;
+    border: solid black 1px;
+}
+
+.board-name {
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    width: 100%;
+    font-size: 17px;
+}
+
+.game-menu-level {
+    font-family: 'Playfair Display';
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    font-size: 25px;
+}
+
+.game-controller {
+    width: 100px;
+    top: 100px;
+    height: calc(100% - 100px);
+    position: absolute;
+    overflow-y: auto;
+    right: 0;
+    z-index: 71;
+    overflow-x: hidden;
+}
+
+.game-controller>div {
+    padding-top: 50px;
+    width: 100%;
+    height: 350px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* --- Buttons ---*/
+.game-button {
+    font-size: 35px;
+    cursor: pointer;
+    transition: 0.3 transform;
+    filter: hue-rotate(45deg);
+}
+
+.game-button:hover {
+    transform: scale(1.03);
+}
+
+/* --- slider  --- */
+.slidecontainer {
+    width: 80px;
+    /* height: 100%; */
+    display: inline-flex;
+    /* margin: auto 10px; */
+}
+
+.slider {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    border-radius: 10px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border: 1px solid #000;
+    margin-top: 5px;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #70D467;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+#swal2-content{
+    font-family: monospace;
+}

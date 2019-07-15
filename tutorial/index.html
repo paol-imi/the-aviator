@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Tutorial</title>
+
+    <link rel="icon" href="../icons/gamepad.svg">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/black.css" id="theme">
+</head>
+
+<body>
+    <div class="reveal" style="background-color:#191919">
+        <div class="slides">
+            <section>
+                <h1>Welcome</h1>
+                <h4>This game is designed for <mark>student</mark>, as a first approach to
+                    <mark>programming</mark>.<br>In the next slides you'll see how it works.</h4>
+                <p>
+                    <small>Created by <a href="https://github.com/Paol-imi">Paolo longo</a></small>
+                </p>
+            </section>
+
+            <section>
+                <h2>Rules</h2>
+                <small>
+                    The game consists of blocks placed on a grid.<br> Some of them are fully colored and other are
+                    translucent.<br> The game is solved when all the colored blocks are moved in the position of the
+                    corrisponding translucent one. Here's an <mark style="font-weight: bold;">example</mark>:
+                </small>
+                <div style=" margin-top: 10px; display: grid; grid-template-columns: auto auto auto; ">
+                    <img style="border: 2px solid #666;" data-src="images/final1.png">
+                    <img style="margin: auto; margin-right: 10px;border: none; background:none;"
+                        data-src="images/arrow.png">
+                    <img style="border: 2px solid #666;" data-src="images/final2.png">
+                </div>
+            </section>
+            <section>
+                <h2>Rules</h2>
+                <small>
+                    To solve the game you have to assemble the <mark
+                        style="font-weight: bold; font-size: 110%;">code</mark>.<br>Through
+                    the code you can interact
+                    with the <mark style="font-weight: bold; font-size: 110%;">plane</mark>.<br>In the next slides all
+                    methods are
+                    explained.
+                </small>
+                <img style="width: 500px; border: 2px solid #666;" data-src="images/code.png">
+
+            </section>
+            <section>
+                <h3>These are all the <mark>methods</mark><br><small><small style="line-height:32px;">you can use to
+                            interact with the <mark style="font-size: 120%;">plane</mark></small></small></h3>
+                <ul>
+                    <li class="fragment">Move up<image
+                            style="background-color: transparent; border: none; height: 45px; margin: 0; margin-bottom: -13px; margin-left: 20px;"
+                            data-src="images/moveup.png"></image>
+                    </li>
+                    <li class="fragment">Move down<image
+                            style="border: none;height: 45px;background-color: transparent;  margin: 0;margin-bottom: -13px; margin-left: 20px;"
+                            data-src="images/movedown.png"></image>
+                    </li>
+                    <li class="fragment">Turn right<image
+                            style="background-color: transparent;border: none; height: 45px; margin: 0; margin-bottom: -13px;margin-left: 20px;"
+                            data-src="images/turnright.png"></image>
+                    </li>
+                    <li class="fragment">Turn left<image
+                            style="background-color: transparent;height: 45px;border: none; margin: 0; margin-bottom: -13px;margin-left: 20px;"
+                            data-src="images/turnleft.png"></image>
+                    </li>
+                    <li class="fragment">Take<image
+                            style="background-color: transparent;border: none;height: 45px; margin: 0; margin-bottom: -13px;margin-left: 20px;"
+                            data-src="images/take.png"></image>
+                    </li>
+                    <li class="fragment">Release<image
+                            style="background-color: transparent;border: none;height: 45px; margin: 0; margin-bottom: -13px;margin-left: 20px;"
+                            data-src="images/release.png"></image>
+                    </li>
+                    <li class="fragment">Over<image
+                            style="background-color: transparent;border: none;height: 45px; margin: 0; margin-bottom: -13px;margin-left: 20px;"
+                            data-src="images/over.png"></image>
+                    </li>
+                    <li class="fragment">Taken<image
+                            style="background-color: transparent;border: none;height: 45px; margin: 0;margin-bottom: -13px; margin-left: 20px;"
+                            data-src="images/taken.png"></image>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h2>Move <small><mark>up</mark> & <mark>down</mark></small></h2>
+                <p>
+                    <small>
+                        Move the plane one step forward or backward.
+                    </small>
+                </p>
+                <div style=" margin-top: 10px; display: grid; grid-template-columns: auto auto auto; ">
+                    <img style="border: 2px solid #666;" data-src="images/1.png">
+                    <img style="margin: auto; margin-right: 10px;border: none; background:none;"
+                        data-src="images/arrow.png">
+                    <img style="border: 2px solid #666;" data-src="images/2.png">
+                </div>
+            </section>
+            <section>
+                <h2>Turn <small><mark>right</mark> & <mark>left</mark></small></h2>
+                <p>
+                    <small>
+                        Turn the plane right or left.
+                    </small>
+                </p>
+                <div style=" margin-top: 10px; display: grid; grid-template-columns: auto auto auto; ">
+                    <img style="border: 2px solid #666;" data-src="images/1.png">
+                    <img style="margin: auto; margin-right: 10px;border: none; background:none;"
+                        data-src="images/arrow.png">
+                    <img style="border: 2px solid #666;" data-src="images/3.png">
+                </div>
+            </section>
+            <section>
+                <h2>Take</h2>
+                <p>
+                    <small>
+                        If the plane is over a column of blocks the top block of the column will be removed, that
+                        block is now <mark style="font-weight: bold;">taken</mark>. <br>That <mark
+                            style="font-weight: bold;">taken</mark> block will be under the plane, you can carry
+                        it around the grid and then release it. <br> If you take two blocks in a row the first one will
+                        be lost.<br> the <mark style="font-weight: bold;">gameBoard</mark> show which is the taken
+                        block.
+                    </small>
+                </p>
+                <div style=" margin-top: 10px; display: grid; grid-template-columns: auto auto auto auto; ">
+                    <img style="border: 2px solid #666;" data-src="images/4.png">
+                    <img style="margin: auto; margin-right: 10px;border: none; background:none;"
+                        data-src="images/arrow.png">
+                    <img style="border: 2px solid #666;" data-src="images/5.png">
+                    <img style="margin: auto; margin-right: 10px; border: 2px solid #666;; background:none;"
+                        data-src="images/gtake.png">
+                </div>
+            </section>
+            <section>
+                <h2>Release</h2>
+                <p>
+                    <small>
+                        Release the <mark style="font-weight: bold;">taken</mark> block under the plane. If the
+                        plane is over a column of blocks the <mark style="font-weight: bold;">taken</mark> block
+                        is released on the top.
+                    </small>
+                </p>
+                <div style=" margin-top: 10px; display: grid; grid-template-columns: auto auto auto; ">
+                    <img style="border: 2px solid #666;" data-src="images/5.png">
+                    <img style="margin: auto; margin-right: 10px;border: none; background:none;"
+                        data-src="images/arrow.png">
+                    <img style="border: 2px solid #666;" data-src="images/4.png">
+                </div>
+            </section>
+            <section>
+                <h2>Taken</h2>
+                <p>
+                    <small>
+                        Taken is a <mark style="font-weight: bold;">control</mark> for colored blocks. <br>You can
+                        choose any color and this method will check if the <mark style="font-weight: bold;">taken</mark>
+                        block is of that color. <br>
+                        If <mark style="font-weight: bold;">white</mark> is selected this method will check if there's a
+                        taken block of any color.
+                    </small>
+                </p>
+                <div style=" margin-top: 10px; display: grid; grid-template-columns: auto auto auto auto; ">
+                    <div style="height: 150px;">
+                        <img style="margin: auto; margin-right: 10px;border: 2px solid #666; background:none;"
+                            data-src="images/gtaken2.png">
+                        <img style="margin: auto; 
+                        filter: opacity(.8);  margin-right: 10px;border: 2px solid #666; background:none;"
+                            data-src="images/iftaken.png">
+                    </div>
+                    <img style="border: 2px solid #666;" data-src="images/1.png">
+                    <img style="margin: auto; margin-right: 10px;border: none; background:none;"
+                        data-src="images/arrow.png">
+                    <img style="border: 2px solid #666;" data-src="images/5.png">
+                </div>
+            </section>
+            <section>
+                <h2>Over</h2>
+                <p>
+                    <small>
+                        Over is a <mark style="font-weight: bold;">control</mark> for colored blocks. <br>You can choose
+                        any color and this method will check if the plane is <mark
+                            style="font-weight: bold;">over</mark> a block of that color.
+                        <br>
+                        If <mark style="font-weight: bold;">white</mark> is selected this method will check if the plane
+                        is over a block of any color.
+
+                        <br> If the plane is over a column of blocks the top block is checked. </small>
+                </p>
+                <div style="margin-top: 10px; display: grid; grid-template-columns: auto auto auto auto auto; ">
+                    <img style="margin: auto; 
+                            filter: opacity(.8);  margin-right: 10px;border: 2px solid #666;; background:none;"
+                        data-src="images/whileover.png">
+
+                    <img style="border: 2px solid #666;" data-src="images/6.png">
+                    <img style="margin: auto; margin-right: 10px;border: none; background:none;"
+                        data-src="images/arrow.png">
+                    <img style="border: 2px solid #666;" data-src="images/7.png">
+                    <img style="margin: auto; margin-right: 10px;border: 2px solid #666;; background:none;"
+                        data-src="images/gover2.png">
+                </div>
+            </section>
+            <section>
+                <h2>The levels</h2>
+                <p>
+                    <small>
+                        Each level is composed of <mark style="font-weight: bold;">sub-levels</mark>. <br>To solve a
+                        level the same <mark style="font-weight: bold;">code</mark> must complete each sub-level.<br>
+                        You can see each sub-level using the buttons below.
+                    </small>
+                </p>
+                <img style="margin: auto; 
+                            filter: opacity(.8); width: 18%;  margin-top: 25px; border: 2px solid #666;; background:none;"
+                    data-src="images/show.png">
+            </section>
+            <section>
+                <h2>Load the code</h2>
+                <p>
+                    <small>
+                        Every time you write <mark style="font-weight: bold;">new code</mark> and want to try it,
+                        remember to <mark style="font-weight: bold;">load</mark> it before starting the game.
+                    </small>
+                </p>
+                <img style="margin: auto; 
+                            filter: opacity(.8); width: 18%;  margin-top: 25px; border: 2px solid #666;; background:none;"
+                    data-src="images/load.png">
+            </section>
+            <section>
+                <h2>Debug</h2>
+                <small>
+                    Select a block and use it as a <mark
+                        style="font-weight: bold; font-size: 110%;">breakpoint</mark>.<br> The game will start (forward
+                    or backward) until that block is reached.
+                </small>
+                <br>
+                <img style="width: 400px; border: 2px solid #666;" data-src="images/debug.png">
+            </section>
+            <section>
+                <h2>Menu</h2>
+                <small>
+                    Don't forget to open the <mark style="font-weight: bold; font-size: 110%;">menu</mark>.
+                </small>
+                <br>
+                <br>
+                <img style="width: 700px; border: 2px solid #666;" data-src="images/menu.gif">
+            </section>
+            <section>
+                <h2>And now...</h2>
+            </section>
+            <section data-background="images/wow.gif">
+                <h2 style="cursor: pointer;" onclick="window.location = 'https://paol-imi.github.io/the-aviator/'">...
+                    You're ready to code!</h2>
+            </section>
+        </div>
+    </div>
+    <script src="../libs/reveal/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: true,
+
+            transition: 'slide'
+        });
+    </script>
+</body>
+
+</html>

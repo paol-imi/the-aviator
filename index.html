@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, maximum-scale=0.7">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>The aviator</title>
+    <link rel="icon" href="favicon/icon.svg">
+
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/tooltip.css">
+    <link rel="stylesheet" type="text/css" href="css/courtain.css">
+    <link rel="stylesheet" type="text/css" href="css/worlds.css">
+    <link rel="stylesheet" type="text/css" href="css/levels.css">
+    <link rel="stylesheet" type="text/css" href="css/game.css">
+
+    <!--pleaserotate-->
+    <script>window.PleaseRotateOptions = { subMessage: '', allowClickBypass: false }</script>
+    <script src="libs/pleaserotate/pleaserotate.min.js"></script>
+    <!--fullscreen-->
+    <script>
+        function toggleFullScreen() {
+            var doc = window.document;
+            var docEl = doc.documentElement;
+
+            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+            if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullScreen.call(docEl);
+            } else {
+                cancelFullScreen.call(doc);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!--game-->
+    <div class="fullscreen game">
+        <!--split-->
+        <div class="split">
+            <!--blockly container-->
+            <div class="split-container">
+                <div class="blockly-editor">
+                    <div id="blockly-div"></div>
+                    <xml id="toolbox" style="display: none">
+                        <category name="Actions" colour="60">
+                            <block type="move">
+                                <field name="DIRECTION">0</field>
+                            </block>
+                            <block type="move">
+                                <field name="DIRECTION">2</field>
+                            </block>
+                            <block type="turn">
+                                <field name="DIRECTION">1</field>
+                            </block>
+                            <block type="turn">
+                                <field name="DIRECTION">3</field>
+                            </block>
+                            <block type="take"></block>
+                            <block type="release"></block>
+                        </category>
+                        <sep></sep>
+                        <category name="Controls" colour="120">
+                            <block type="controls_whileUntil"></block>
+                            <block type="controls_if"></block>
+                            <block type="logic_negate"></block>
+                            <block type="taken"></block>
+                            <block type="over"></block>
+                            <block type="logic_boolean"></block>
+                        </category>
+                        <sep></sep>
+                        <category name="Methods" colour="290" custom="PROCEDURE"></category>
+                    </xml>
+                </div>
+                <!--controls menu-->
+                <div class="game-controller">
+                    <div>
+                        <div class="game-button" data-use="back">🔙</div>
+                        <br>
+                        <div class="game-button" data-use="backward" data-tooltip="Backward">⏪</div>
+                        <div class="game-button" data-use="forward" data-tooltip="Forward">⏩</div>
+                        <br>
+                        <div class="game-button" data-use="play" data-tooltip="Play/Pause">⏯</div>
+                        <div class="game-button" data-use="reset" data-tooltip="Load code">🔁</div>
+                        <br>
+                        <div class="game-button" data-use="show-next" data-tooltip="Show next">⏭</div>
+                        <div class="show-level" data-use="show-level">1/2</div>
+                        <div class="game-button" data-use="show-prior" data-tooltip="Show prior">⏮</div>
+                    </div>
+                    <div style="height: 100px"></div>
+                </div>
+            </div>
+            <!--game container-->
+            <div class="split-container">
+                <div id="canvas" class="canvas"></div>
+            </div>
+        </div>
+        <!--game menu-->
+        <div class="game-menu">
+            <div class="game-menu-world">
+                <div class="game-menu-image"></div>
+            </div>
+            <!--level inf-->
+            <div class="game-menu-container">
+                <span class="game-menu-level"> Level - 1 </span>
+            </div>
+            <!--board-->
+            <div class="game-menu-container">
+                <div class="game-menu-board">
+                    <span class="board-name">Moves</span>
+                    <div data-use="moves" class="board-moves">0</div>
+                </div>
+                <div class="game-menu-board">
+                    <span class="board-name">Taken</span>
+                    <div data-use="taken" class="board-color" style="background-color: whitesmoke"></div>
+                </div>
+                <div class="game-menu-board">
+                    <span class="board-name">Over</span>
+                    <div data-use="over" class="board-color" style="background-color: whitesmoke"></div>
+                </div>
+            </div>
+            <!--buttons-->
+            <div class="game-menu-container">
+                <div class="game-menu-buttons">
+                    <div class="game-button" data-use="info" data-tooltip="Level description">🛈</div>
+                    <div class="game-button" data-use="save" data-tooltip="Save the code">💾</div>
+                    <div class="game-button" data-use="restore" data-tooltip="Restore the code">✅</div>
+                    <div class="slidecontainer">
+                        <input data-tooltip="Speed" data-use="slider" type="range" min="1" max="10" value="1"
+                            class="slider">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--worlds-->
+    <div class="fullscreen worlds">
+        <!--links-->
+        <div class="links">
+            <a data-use="fullscreen">📺</a> |
+            <a data-use="home">home</a> |
+            <a data-use="tutorial" href="tutorial">tutorial</a>
+        </div>
+    </div>
+
+    <!--courtain-->
+    <div class="fullscreen courtain">
+        <!--content-->
+        <div class="content">
+            <h1 class="title"><span>the</span>Aviator</h1>
+            <image class="aviator" src="images/aviator/aviator.png"></image>
+        </div>
+    </div>
+
+    <!--levels-->
+    <div class="fullscreen levels" style="display: none">
+        <!--world view-->
+        <div class="world-view">
+        </div>
+        <!--level view-->
+        <div class="level-view">
+            <div class="name"></div>
+            <div class="levels-container"></div>
+        </div>
+    </div>
+
+    <!--worlds json-->
+    <script src="js/worlds/jollycolor.js"></script>
+    <script src="js/worlds/worlds.js"></script>
+    <script src="js/worlds/parser.js"></script>
+    <script>
+        // parse all the stages
+        Worlds.forEach(world => {
+            world.stages.forEach(stage => {
+                const colors = world.colors.blocks
+
+                stage.levels.forEach((level, index) => {
+                    stage.levels[index] = Parser(level, colors)
+                })
+            })
+        })
+    </script>
+
+    <!--world generator-->
+    <script>
+        /* --- World --- */
+        const WORLD = {
+            // image path
+            path: i => 'url("images/worlds/' + (i + 1) + '.png")',
+            // depths for parallax effect
+            depth: text => /Mobi/.test(navigator.userAgent)
+                ? (text ? Math.random() * .1 + .1 : Math.random() * .3 + .3) + ''
+                : (text ? '0.1' : '0.2'),
+            // dom element generator
+            domElement(i, name) {
+                //  <world>
+                //    <world-container>
+                //       <world-text>
+                //       <world-frame>
+                // 
+                let world = document.createElement('div'),
+                    container = document.createElement('div'),
+                    text = document.createElement('div'),
+                    frame = document.createElement('div')
+
+                // set the world
+                world.setAttribute('class', 'world')
+                world.setAttribute('data-name', name)
+                world.appendChild(container)
+
+                // set the frame
+                frame.setAttribute('class', 'world-frame')
+                frame.style['background-image'] = this.path(i)
+                frame.setAttribute('data-depth', this.depth())
+
+                // set the text
+                if (name) {
+                    text.setAttribute('class', 'world-text')
+                    text.setAttribute('data-depth', this.depth(true))
+                    text.innerHTML = name
+                    container.appendChild(text)
+                }
+
+                // set the container
+                container.setAttribute('class', 'world-container')
+                container.appendChild(frame)
+
+                // return the world
+                return world
+            }
+        }
+    </script>
+    <!--level generator-->
+    <script>
+        /* --- Level --- */
+        const LEVEL = {
+            // icon getter
+            icon(index) {
+                return [
+                    '🔙',
+                    '1️⃣',
+                    '2️⃣',
+                    '3️⃣',
+                    '4️⃣',
+                    '5️⃣',
+                    '6️⃣',
+                    '7️⃣'
+                ][index]
+            },
+            // dom element generator
+            domElement(index) {
+                const level = document.createElement('div')
+
+                // set the level
+                level.setAttribute('class', 'game-button level')
+                level.innerHTML = this.icon(index)
+
+                return level
+            },
+            // inject levels in a given div
+            inject(div, n) {
+                // array of levels
+                const array = []
+
+                // if there are some old levels
+                if (div.innerHTML != '') return
+
+                for (let i = 0; i < n + 1; i++) {
+                    const el = this.domElement(i)
+                    array.push(el)
+                    div.appendChild(el)
+                }
+
+                return array
+            }
+        }
+    </script>
+    <!--elements-->
+    <script>
+        /* --- Elements --- */
+        const ELEMENTS = {
+            // game elements
+            'GAME': {
+                'DIV': document.querySelector('.game'),
+                'SPLIT': document.querySelector('.split'),
+                'SPLITS': document.querySelectorAll('.split-container'),
+                'TOOLBOX': document.getElementById('toolbox'),
+                'CANVAS': document.getElementById('canvas'),
+                'MENU': document.querySelector('.game-menu'),
+                'GAMEBOARD': {
+                    'MOVES': document.querySelector('[data-use="moves"]'),
+                    'TAKEN': document.querySelector('[data-use="taken"]'),
+                    'OVER': document.querySelector('[data-use="over"]'),
+                    'LEVEL': document.querySelector('[data-use="show-level"]')
+                },
+                'BUTTONS': {
+                    'FORWARD': document.querySelector('[data-use="forward"]'),
+                    'BACKWARD': document.querySelector('[data-use="backward"]'),
+                    'RESET': document.querySelector('[data-use="reset"]'),
+                    'PLAY': document.querySelector('[data-use="play"]'),
+                    'SHOW-NEXT': document.querySelector('[data-use="show-next"]'),
+                    'SHOW-PRIOR': document.querySelector('[data-use="show-prior"]'),
+                    'BACK': document.querySelector('[data-use="back"]')
+                },
+                'BOARD': {
+                    'WORLD': document.querySelector('.game-menu-world'),
+                    'IMAGE': document.querySelector('.game-menu-image'),
+                    'CONTAINER': document.querySelector('.game-menu-container'),
+                    'MENU-INFO': document.querySelector('.game-menu-level'),
+                    'SAVE': document.querySelector('[data-use="save"]'),
+                    'RESTORE': document.querySelector('[data-use="restore"]'),
+                    'INFO': document.querySelector('[data-use="info"]'),
+                    'SLIDER': document.querySelector('[data-use="slider"]')
+                }
+            },
+            // levels elements
+            'LEVELS': {
+                'DIV': document.querySelector('.levels'),
+                'WORLD-VIEW': document.querySelector('.world-view'),
+                'LEVEL-VIEW': document.querySelector('.level-view'),
+                'CONTAINER': document.querySelector('.levels-container'),
+                'NAME': document.querySelector('.name'),
+                'BUTTONS': []
+            },
+            // worlds elements
+            'WORLDS': {
+                'DIV': document.querySelector('.worlds'),
+                'HOME': document.querySelector('[data-use="home"]'),
+                'TUTORIAL': document.querySelector('[data-use="tutorial"]'),
+                'FULLSCREEN': document.querySelector('[data-use="fullscreen"]'),
+                'WORLDS': [],
+                'CONTAINERS': []
+            },
+            // courtain elements
+            'COURTAIN': {
+                'DIV': document.querySelector('.courtain'),
+                'PLANE': document.querySelector('.aviator'),
+                'CONTENT': document.querySelector('.content'),
+                'TITLE': document.querySelector('.title')
+            }
+        }
+
+        // generate all the worlds
+        for (let i = 0; i < Worlds.length; i++) {
+            const world = WORLD.domElement(i, Worlds[i].name)
+
+            // push the elements
+            ELEMENTS['WORLDS']['WORLDS'].push(world)
+            ELEMENTS['WORLDS']['DIV'].appendChild(world)
+            ELEMENTS['WORLDS']['CONTAINERS'].push(world.querySelector('.world-container'))
+        }
+
+        // generate the view
+        ELEMENTS['LEVELS']['WORLD'] = WORLD.domElement()
+        ELEMENTS['LEVELS']['WORLD-VIEW'].appendChild(ELEMENTS['LEVELS']['WORLD'])
+
+        // set the frame
+        ELEMENTS['LEVELS']['FRAME-CONTAINER'] = ELEMENTS['LEVELS']['WORLD-VIEW'].querySelector('.world-container')
+        ELEMENTS['LEVELS']['FRAME'] = ELEMENTS['LEVELS']['FRAME-CONTAINER'].querySelector('.world-frame')
+
+        // set all the texts
+        ELEMENTS['WORLDS']['NAMES'] = document.querySelectorAll('.world-text')
+
+        // close the menu
+        ELEMENTS['GAME']['MENU'].style.right = '-590px'
+    </script>
+    <!--parallax-->
+    <script src="libs/parallax/parallax.min.js"></script>
+    <script>
+        /* --- Parallax ---*/
+        const PARALLAX = {
+            // play the parallax effect
+            play() {
+                for (let world of this.worlds) world.enable()
+            },
+            // pause the parallax effect
+            pause() {
+                for (let world of this.worlds) world.disable()
+            },
+            worlds: []
+        }
+
+        // load parallax effect
+        for (frame of ELEMENTS['WORLDS']['CONTAINERS'])
+            PARALLAX.worlds.push(new Parallax(frame, {
+                relativeInput: true,
+                limitX: 60,
+                limitY: 60
+            }))
+
+        // adjust the names after parallax has loaded
+        ELEMENTS['WORLDS']['NAMES'].forEach(el => el.style.top = '-1vw')
+    </script>
+
+    <!--animations-->
+    <script src="libs/tween/TweenMax.min.js"></script>
+    <script>
+        /* --- Animations --- */
+        const ANIMATIONS = {
+            time: 1,
+            // aviator animation
+            aviatorAnimation: TweenMax.to(ELEMENTS['COURTAIN']['PLANE'], 3, {
+                yoyoEase: Power1.easeInOut,
+                ease: Power1.easeOut,
+                top: '45%',
+                repeat: -1,
+                paused: true
+            }),
+
+            // courtain content animation
+            animateContent() {
+                return new Promise(resolve => {
+                    const tl = new TimelineMax({
+                        onComplete: () => setTimeout(resolve, 150)
+                    })
+                        // title animation
+                        .to(ELEMENTS['COURTAIN']['TITLE'], this.time, {
+                            'opacity': 1,
+                            'margin-left': 0,
+                            'ease': Power3.easeOut
+                        })
+                        // plane animation
+                        .to(ELEMENTS['COURTAIN']['PLANE'], this.time, {
+                            'top': '50%',
+                            'left': '60%',
+                            'ease': Power3.easeOut,
+                            onComplete: () => ANIMATIONS.aviatorAnimation.play()
+                        })
+                })
+            },
+            // show courtain content
+            showContent() {
+                return new Promise(onComplete => {
+                    // show the content
+                    ELEMENTS['COURTAIN']['CONTENT'].style.display = 'block'
+
+                    // change the opacity
+                    TweenMax.to(ELEMENTS['COURTAIN']['CONTENT'], this.time / 2, {
+                        opacity: 1,
+                        ease: Power1.easeIn,
+                        onComplete
+                    })
+                })
+            },
+            // hide courtain content
+            hideContent() {
+                // hide content
+                ELEMENTS['COURTAIN']['CONTENT'].style.opacity = 0
+                ELEMENTS['COURTAIN']['CONTENT'].style.display = 'none'
+            },
+            // animate levels buttons
+            animateLevels() {
+                return new Promise(onComplete => {
+                    const tl = new TimelineMax({
+                        onComplete,
+                        delay: this.time / 3 * 2
+                    })
+
+                    // buttons animation
+                    ELEMENTS['LEVELS']['BUTTONS'].forEach(level => {
+                        tl.to(level, this.time / 2, {
+                            'margin-left': 0,
+                            'opacity': 1
+                        }, '-=' + this.time / 3)
+                    })
+                })
+            },
+
+            // show courtain
+            showCourtain() {
+                return Promise.all([
+                    new Promise(onComplete => {
+                        // show courtain
+                        ELEMENTS['COURTAIN']['DIV'].style.display = 'block'
+
+                        const tl = new TimelineMax({
+                            onComplete
+                        })
+                            // courtain animation
+                            .to(ELEMENTS['COURTAIN']['DIV'], this.time,
+                                {
+                                    left: 0,
+                                    ease: Power2.easeOut
+                                })
+                    }),
+                    // show courtain animation
+                    this.showContent()
+                ])
+            },
+            // hide courtain
+            hideCourtain() {
+                return new Promise(resolve => {
+                    const tl = new TimelineMax({
+                        onComplete: () => {
+                            // hide courtain
+                            ELEMENTS['COURTAIN']['DIV'].style.display = 'none'
+                            this.hideContent()
+
+                            this.aviatorAnimation.pause()
+
+                            resolve()
+                        }
+                    })
+                        // courtain animation
+                        .to(ELEMENTS['COURTAIN']['DIV'], this.time,
+                            {
+                                left: '-100vw',
+                                ease: Power2.easeOut
+                            })
+                })
+            },
+
+            /* show/hide methods */
+
+            // show levels
+            showLevels() {
+                return Promise.all([
+                    new Promise(async onComplete => {
+                        PARALLAX.pause()
+
+                        // set initial style
+                        TweenMax.set(ELEMENTS['COURTAIN']['DIV'], { left: '150vw' })
+                        TweenMax.set(ELEMENTS['LEVELS']['DIV'], { left: '100vw' })
+                        ELEMENTS['GAME']['DIV'].style.display = 'none'
+                        ELEMENTS['COURTAIN']['DIV'].style.display = 'block'
+                        ELEMENTS['LEVELS']['DIV'].style.display = 'grid'
+
+                        const tl = new TimelineMax({
+                            onComplete
+                        })
+                            // blur effect
+                            .to(ELEMENTS['WORLDS']['DIV'], this.time, {
+                                filter: 'blur(8px)',
+                                ease: Power1.easeOut
+                            })
+                            // levels animation
+                            .to(ELEMENTS['LEVELS']['DIV'], this.time, {
+                                left: 0,
+                                ease: Power3.easeOut
+                            }, '-=' + this.time)
+                            // courtain animation
+                            .to(ELEMENTS['COURTAIN']['DIV'], this.time, {
+                                left: '50vw',
+                                ease: Power3.easeOut
+                            }, '-= ' + this.time)
+                    }),
+                    this.animateLevels()
+                ])
+            },
+            // hide levels
+            hideLevels() {
+                return new Promise(async resolve => {
+                    PARALLAX.play()
+
+                    const tl = new TimelineMax({
+                        onComplete: () => {
+                            ELEMENTS['LEVELS']['DIV'].style.display = 'none'
+                            ELEMENTS['COURTAIN']['DIV'].style.display = 'none'
+                            ELEMENTS['LEVELS']['CONTAINER'].innerHTML = ''
+
+
+                            resolve()
+                        }
+                    })
+                        // remove blur effect
+                        .to(ELEMENTS['WORLDS']['DIV'], this.time / 2, {
+                            filter: 'blur(0)',
+                            ease: Power1.easeOut
+                        })
+                        // level animation
+                        .to(ELEMENTS['LEVELS']['DIV'], this.time, {
+                            left: '100vw',
+                            ease: Power3.easeOut
+                        }, '-=' + this.time / 2)
+                        // courtain animation
+                        .to(ELEMENTS['COURTAIN']['DIV'], this.time, {
+                            left: '100vw',
+                            ease: Power3.easeOut
+                        }, '-= ' + this.time)
+                })
+            },
+            // show game
+            showGame() {
+                return new Promise(async resolve => {
+                    const tl = new TimelineMax({
+                        onComplete: () => {
+                            ELEMENTS['COURTAIN']['DIV'].style.left = '100vw'
+                            ELEMENTS['LEVELS']['DIV'].style.left = '100vw'
+                            ELEMENTS['LEVELS']['CONTAINER'].innerHTML = ''
+
+                            this.hideContent()
+                            resolve()
+                        }
+                    })
+
+                    this.showContent()
+
+                    tl
+                        // level animation
+                        .to(ELEMENTS['LEVELS']['DIV'], this.time, {
+                            left: '-100vw',
+                            ease: Power3.easeOut
+                        })
+                        // courtain animation
+                        .to(ELEMENTS['COURTAIN']['DIV'], this.time, {
+                            left: '0',
+                            ease: Power3.easeOut,
+                            onComplete: () => {
+                                // show the game
+                                ELEMENTS['GAME']['DIV'].style.display = 'block'
+                                ELEMENTS['WORLDS']['DIV'].style.display = 'none'
+                                ELEMENTS['WORLDS']['DIV'].style.filter = 'blur(0px)'
+                            }
+                        }, '-= ' + this.time)
+                        // game animation
+                        .to(ELEMENTS['COURTAIN']['DIV'], this.time, {
+                            left: '-100vw',
+                            ease: Power3.easeOut
+                        })
+                })
+            },
+            // hide game
+            hideGame() {
+                return new Promise(async resolve => {
+                    // show courtain
+                    await this.showCourtain()
+                    // set the style
+                    ELEMENTS['WORLDS']['DIV'].style.display = 'block'
+                    ELEMENTS['GAME']['DIV'].style.display = 'none'
+                    TweenMax.set(ELEMENTS['GAME']['SPLIT'], { 'height': '100%' })
+                    // play the parrallax effect
+                    PARALLAX.play()
+                    // hide courtain
+                    await this.hideCourtain()
+                    resolve()
+                })
+            },
+            // show home
+            showHome() {
+                this.aviatorAnimation.play()
+                // show courtain
+                return this.showCourtain()
+            },
+            // toggle menu
+            toggleMenu() {
+                return new Promise(async onComplete => {
+                    if (ELEMENTS['GAME']['MENU'].style.right == '-590px') {
+                        // show menu
+                        TweenMax
+                            .to(ELEMENTS['GAME']['MENU'], this.time / 2, {
+                                right: '0px',
+                                ease: Power1.easeOut,
+                                onComplete
+                            })
+                    } else {
+                        // hide menu
+                        TweenMax
+                            .to(ELEMENTS['GAME']['MENU'], this.time / 2, {
+                                right: '-590px',
+                                ease: Power1.easeOut,
+                                onComplete
+                            })
+                    }
+                })
+            }
+        }
+
+        // the handler will avoid the loading of an animations if the previous one is not finished
+        const HANDLER = new Proxy({ animating: false }, {
+            get: function (target, prop) {
+                // return the animating flag
+                if (prop == 'animating') return target['animating']
+
+                // if the old animation has finished
+                if (!target['animating']) {
+                    target['animating'] = true
+                    // load animation
+                    return () => ANIMATIONS[prop]().then(() => target['animating'] = false)
+                }
+
+                return _ => _
+            }
+        })
+    </script>
+    <!--load page-->
+    <script>
+            // load page
+            (async () => {
+                // animate the content
+                await Promise.all([
+                    ANIMATIONS.animateContent(),
+                    new Promise(resolve => {
+                        window.addEventListener('load', resolve)
+                    })
+                ])
+
+                // add after the window has been loaded
+                ELEMENTS['COURTAIN']['DIV'].onclick = () => HANDLER.hideCourtain()
+            })()
+    </script>
+
+    <!--three-->
+    <script src="libs/three/three.min.js"></script>
+    <script src="libs/three/OrbitControls.min.js"></script>
+    <!--game-->
+    <script src="js/game/game.js"></script>
+    <!--gui-->
+    <script src="js/gui/animations.js"></script>
+    <script src="js/gui/gui.js"></script>
+    <!--ui-->
+    <script src="js/ui/gameBoard.js"></script>
+    <script src="js/ui/textures.js"></script>
+    <script src="js/ui/three.js"></script>
+    <!--load ui-->
+    <script> Textures.load() </script>
+    <script> Three.load(ELEMENTS['GAME']['CANVAS']) </script>
+    <script> Gameboard.load(ELEMENTS['GAME']['GAMEBOARD']) </script>
+    <!--blockly-->
+    <script src="libs/blockly/blockly_compressed.js"></script>
+    <script src="libs/blockly/blocks_compressed.js"></script>
+    <script src="libs/blockly/javascript_compressed.js"></script>
+    <script src="libs/blockly/en.js"></script>
+    <script src="libs/blockly/theme.js"></script>
+    <!--gamepad-->
+    <script src="libs/gamepad/gamepad.min.js"></script>
+    <!--index-->
+    <script src="js/index/index.js"></script>
+
+    <!--split-->
+    <script src="libs/split/split.min.js"></script>
+    <script>
+        /* --- Split --- */
+        const SPLIT = Split(ELEMENTS['GAME']['SPLITS'], {
+            onDragEnd: () => {
+                // resize
+                gamepad.blocklyManager.resize()
+                Three.handleWindowResize()
+            },
+            elementStyle: (dimension, size, gutterSize) => {
+                return {
+                    'flex-basis': `calc(${size}% - ${gutterSize - 3}px)`
+                }
+            },
+            gutterStyle: (dimension, gutterSize) => {
+                if (/Mobi/.test(navigator.userAgent))
+                    gutterSize += 13
+
+                return {
+                    'flex-basis': `${gutterSize}px`,
+                }
+            }
+        })
+    </script>
+
+    <!--link handlers-->
+    <script src="libs/sweetalert2/sweetalert2.all.min.js"></script>
+    <script>
+        let resetted = false,
+            currentStage = {}
+
+        // show alert if the user has not loaded the code
+        const showAlert = () => {
+            swal.fire({
+                type: 'warning',
+                title: 'You didn\'t load the code',
+                text: 'You can\'t play the game until you load your code with the button below 🔄'
+            })
+        }
+
+        // set the colors
+        const setColors = (colors) => {
+            // set the blockly colours
+            Blockly.FieldColour.COLOURS = colors.blocks.concat(JollyColor)
+
+            // add the gradient effect
+            ELEMENTS['COURTAIN']['DIV'].style['background-image'] = 'linear-gradient(' + colors['background'][0] + ', ' + colors['background'][1] + ')';
+            ELEMENTS['GAME']['BOARD']['WORLD'].style['background-image'] = 'linear-gradient(' + colors['background'][0] + ', ' + colors['background'][1] + ')';
+            ELEMENTS['GAME']['BOARD']['CONTAINER'].style['background-image'] = 'linear-gradient(' + colors['background'][0] + ', ' + colors['background'][1] + ')';
+
+            // add the font color
+            ELEMENTS['LEVELS']['NAME'].style.color = colors.title
+            ELEMENTS['COURTAIN']['TITLE'].style.color = colors.title
+            ELEMENTS['GAME']['BOARD']['MENU-INFO'].style.color = colors.title
+
+            // change the hue of the buttons
+            ELEMENTS['LEVELS']['BUTTONS'].concat(Object.values(ELEMENTS['GAME']['BUTTONS']))
+                .forEach(value => value.style.filter = 'hue-rotate(' + colors.hue + 'deg)')
+
+            // custom hue
+            ELEMENTS['LEVELS']['BUTTONS'][0].style.filter = 'hue-rotate(' + (colors.hue + 45) + 'deg)'
+        }
+
+        // level on click handler
+        const levelonclick = (stage, i) => () => {
+            if (HANDLER.animating) return
+            // update split sizes
+            SPLIT.setSizes([30, 70])
+
+            // update the current level
+            currentStage = stage
+
+            // update the blockly div
+            ELEMENTS['GAME']['DIV'].style = 'block'
+            ELEMENTS['GAME']['BOARD']['MENU-INFO'].innerHTML = 'Level - ' + (i + 1)
+            gamepad.restore(currentStage.name)
+
+            // update resetted
+            resetted = false
+
+            // load the level
+            game.load(stage.levels)
+
+            // show the game
+            HANDLER.showGame()
+
+            // resize
+            setTimeout(() => {
+                Three.handleWindowResize()
+                gamepad.blocklyManager.resize()
+            })
+        }
+
+        // world on click handler
+        const worldonclick = (i) => () => {
+            if (HANDLER.animating) return
+            const world = Worlds[i]
+
+            // update the world element
+            ELEMENTS['LEVELS']['FRAME'].style['background-image'] = WORLD.path(i)
+            ELEMENTS['GAME']['BOARD']['IMAGE'].style['background-image'] = WORLD.path(i)
+            ELEMENTS['LEVELS']['NAME'].innerHTML = world['name']
+
+            // set levels
+            ELEMENTS['LEVELS']['BUTTONS'] = LEVEL.inject(ELEMENTS['LEVELS']['CONTAINER'], world.stages.length) || ELEMENTS['LEVELS']['BUTTONS']
+            ELEMENTS['LEVELS']['BUTTONS'].slice(1).forEach((button, i) => button.onclick = levelonclick(world.stages[i], i))
+            ELEMENTS['LEVELS']['BUTTONS'][0].onclick = () => HANDLER.hideLevels()
+
+            // set colors
+            setColors(world.colors)
+
+            // show levels
+            HANDLER.showLevels()
+        }
+
+        // link the handlers
+        ELEMENTS['WORLDS']['WORLDS'].forEach((world, i) => world.onclick = worldonclick(i))
+
+        ELEMENTS['GAME']['BOARD']['WORLD'].onclick = async () => HANDLER.toggleMenu()
+        ELEMENTS['GAME']['BOARD']['SAVE'].onclick = () => gamepad.save(currentStage.name) + swal.fire({
+            type: 'success',
+            title: 'The code has been saved!'
+        })
+        ELEMENTS['GAME']['BOARD']['RESTORE'].onclick = () => gamepad.restore(currentStage.name) + swal.fire({
+            type: 'success',
+            title: 'The code has been restored from the last saved!'
+        })
+        ELEMENTS['GAME']['BOARD']['INFO'].onclick = () => swal.fire({
+            type: 'info',
+            title: currentStage.name,
+            html: currentStage.description
+        })
+        ELEMENTS['GAME']['BOARD']['SLIDER'].oninput = function () {
+            guiData.speed = this.value
+        }
+
+        ELEMENTS['GAME']['BUTTONS']['BACK'].onclick = () => HANDLER.hideGame() + game.reset()
+        ELEMENTS['GAME']['BUTTONS']['FORWARD'].onclick = () => resetted ? gamepad.forward() + gui.removeAnimation() : showAlert()
+        ELEMENTS['GAME']['BUTTONS']['BACKWARD'].onclick = () => resetted ? gamepad.backward() + gui.removeAnimation() : showAlert()
+        ELEMENTS['GAME']['BUTTONS']['PLAY'].onclick = () => resetted ? gamepad.togglePlay() : showAlert()
+        ELEMENTS['GAME']['BUTTONS']['RESET'].onclick = () => (resetted = true) + game.reset()
+
+        ELEMENTS['GAME']['BUTTONS']['SHOW-NEXT'].onclick = () => game.showNext()
+        ELEMENTS['GAME']['BUTTONS']['SHOW-PRIOR'].onclick = () => game.showPrior()
+
+        ELEMENTS['WORLDS']['HOME'].onclick = () => HANDLER.showHome()
+        ELEMENTS['WORLDS']['FULLSCREEN'].onclick = toggleFullScreen
+
+        ELEMENTS['LEVELS']['WORLD'].onclick = () => HANDLER.hideLevels()
+    </script>
+
+    <!--debug menu-->
+    <script>
+        var originalBlocklyContextMenuPopulate = Blockly.ContextMenu.populate_;
+        Blockly.ContextMenu.populate_ = function (options, rtl) {
+            options = options.concat(
+                {
+                    text: 'Set as breakpoint (forward)',
+                    enabled: true,
+                    callback: async () => {
+                        if (resetted) {
+                            // do the debug without loading the animations
+                            gui.asynchronizer.async.animarions && gui.asynchronizer.async.animarions.complete()
+                            guiData.time = 0
+                            await gamepad.debug(Blockly.selected.id, false)
+                            guiData.time = 1
+                        } else {
+                            showAlert()
+                        }
+                    }
+                },
+                {
+                    text: 'Set as breakpoint (backward)',
+                    enabled: true,
+                    callback: async () => {
+                        if (resetted) {
+                            // do the debug without loading the animations
+                            gui.asynchronizer.async.animarions && gui.asynchronizer.async.animarions.complete()
+                            guiData.time = 0
+                            await gamepad.debug(Blockly.selected.id, true)
+                            guiData.time = 1
+                        } else {
+                            showAlert()
+                        }
+                    }
+                })
+
+            return originalBlocklyContextMenuPopulate.apply(Blockly.ContextMenu, [options, rtl]);
+        }
+    </script>
+
+    <!--github link-->
+    <script src="libs/github/index.js"></script>
+    <script>GitHub.inject(ELEMENTS['COURTAIN']['DIV'])</script>
+</body>
+
+</html>

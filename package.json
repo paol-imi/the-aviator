@@ -1,0 +1,15 @@
+{
+  "name": "the-aviator",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paol-imi/the-aviator.git"
+  },
+  "dependencies": {
+    "blockly": "github:google/blockly",
+    "gamepad.js": "github:Paol-imi/gamepad.js"
+  },
+  "author": "Paol-imi",
+  "license": "MIT",
+  "homepage": "https://github.com/Paol-imi/the-aviator#readme"
+}

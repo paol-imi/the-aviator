@@ -1,0 +1,27 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    user-select: none;
+    font-family: 'Playfair Display';
+}
+
+.fullscreen {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #aaaaaa;
+}
