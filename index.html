@@ -807,6 +807,7 @@
             // update the blockly div
             ELEMENTS['GAME']['DIV'].style = 'block'
             ELEMENTS['GAME']['BOARD']['MENU-INFO'].innerHTML = 'Level - ' + (i + 1)
+            gamepad.blocklyManager.reset()
             gamepad.restore(currentStage.name)
 
             // update resetted
