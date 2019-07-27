@@ -4,7 +4,7 @@
 
 # What is it? 📘
 
-### This is a game designed for `students` 👨‍🎓 as a first approach to `programming` 💻. try it [here](https://paol-imi.github.io/the-aviator/)!
+### This is a game designed for `students` 👨‍🎓 as a first approach to `programming` 💻. <br> Read the [tutorial](https://paol-imi.github.io/the-aviator/tutorial/#/) and try the game [here](https://paol-imi.github.io/the-aviator/)!
 
 <br>
 
