@@ -80,7 +80,8 @@ Blockly.Gamepad.init({
         'taken': {
             method: 'TAKEN',
             args: [{
-                field: 'colour'
+                field: 'colour',
+                get: colour => colour.toLowerCase()
             }],
             order: Blockly.JavaScript.ORDER_NONE,
             json: {
@@ -88,7 +89,7 @@ Blockly.Gamepad.init({
                 "args0": [{
                     "type": "field_colour",
                     "name": "colour",
-                    "colour": "whitesmoke"
+                    "colour": JollyColor
                 }],
                 "output": "Boolean",
                 "style": "logic_blocks",
@@ -99,7 +100,8 @@ Blockly.Gamepad.init({
         'over': {
             method: 'OVER',
             args: [{
-                field: 'colour'
+                field: 'colour',
+                get: colour => colour.toLowerCase()
             }],
             order: Blockly.JavaScript.ORDER_NONE,
             json: {
@@ -107,7 +109,7 @@ Blockly.Gamepad.init({
                 "args0": [{
                     "type": "field_colour",
                     "name": "colour",
-                    "colour": "whitesmoke"
+                    "colour": JollyColor
                 }],
                 "output": "Boolean",
                 "style": "logic_blocks",

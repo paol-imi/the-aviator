@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "blockly": "github:google/blockly",
-    "gamepad.js": "github:Paol-imi/gamepad.js"
+    "blockly-gamepad": "github:Paol-imi/blockly-gamepad"
   },
   "author": "Paol-imi",
   "license": "MIT",

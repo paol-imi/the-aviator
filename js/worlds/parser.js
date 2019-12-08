@@ -23,7 +23,7 @@ const Parser = function (stage, colors) {
 
     // create a block
     function createBlock(block) {
-        return { color: colors[block] }
+        return { color: colors[block].toLowerCase() }
     }
 
     // load all the blocks

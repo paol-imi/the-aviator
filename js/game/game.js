@@ -359,7 +359,7 @@ const Game = class {
         // return true if the block exist and it is of the choosen color 
         // or the choosen color is the jollycolor
         return {
-            return: block && (block.color == color || color == JollyColor)
+            return: block && (block.color === color || color === JollyColor)
         }
     }
     OVER(color) {
@@ -368,7 +368,7 @@ const Game = class {
         // return true if the block exist and it is of the choosen color 
         // or the choosen color is the jollycolor
         return {
-            return: block && (block.color == color || color == JollyColor)
+            return: block && (block.color === color || color === JollyColor)
         }
     }
 }

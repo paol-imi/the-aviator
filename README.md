@@ -22,12 +22,12 @@
 
 # Built with 🛠️
 
-### This game is built on [Blockly](https://github.com/google/blockly) using [gamepad.js](https://github.com/Paol-imi/gamepad.js)
+### This game is built on [Blockly](https://github.com/google/blockly) using [blockly-gamepad](https://github.com/Paol-imi/blockly-gamepad)
 
 <a href="https://github.com/google/blockly">
     <img src="images/blockly/logo_built_on.svg" width="60%">
 </a>
-<a href="https://github.com/Paol-imi/gamepad.js">
+<a href="https://github.com/Paol-imi/blockly-gamepad">
     <img src="images/logo/icon.svg" width="25%">
 </a>
 
