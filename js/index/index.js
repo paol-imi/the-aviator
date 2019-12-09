@@ -29,7 +29,7 @@ Blockly.Gamepad.init({
                 "nextStatement": null,
                 "style": "move_blocks",
                 "tooltip": "Move the plane one step forward or backward",
-                "helpUrl": "file:///C:/Users/paolo/Desktop/the-aviator/tutorial/index.html#/4"
+                "helpUrl": "https://paol-imi.github.io/the-aviator/tutorial/#/4"
             }
         },
         'turn': {
@@ -52,7 +52,7 @@ Blockly.Gamepad.init({
                 "nextStatement": null,
                 "style": "move_blocks",
                 "tooltip": "Turn the plane right or left",
-                "helpUrl": "file:///C:/Users/paolo/Desktop/the-aviator/tutorial/index.html#/5"
+                "helpUrl": "https://paol-imi.github.io/the-aviator/tutorial/#/5"
             }
         },
         'take': {
@@ -63,7 +63,7 @@ Blockly.Gamepad.init({
                 "nextStatement": null,
                 "style": "action_blocks",
                 "tooltip": "Take the block under the plane",
-                "helpUrl": "file:///C:/Users/paolo/Desktop/the-aviator/tutorial/index.html#/6"
+                "helpUrl": "https://paol-imi.github.io/the-aviator/tutorial/#/6"
             }
         },
         'release': {
@@ -74,7 +74,7 @@ Blockly.Gamepad.init({
                 "nextStatement": null,
                 "style": "action_blocks",
                 "tooltip": "Release the block under the plane",
-                "helpUrl": "file:///C:/Users/paolo/Desktop/the-aviator/tutorial/index.html#/7"
+                "helpUrl": "https://paol-imi.github.io/the-aviator/tutorial/#/7"
             }
         },
         'taken': {
@@ -94,7 +94,7 @@ Blockly.Gamepad.init({
                 "output": "Boolean",
                 "style": "logic_blocks",
                 "tooltip": "Is the block taken of the chosen color?",
-                "helpUrl": "file:///C:/Users/paolo/Desktop/the-aviator/tutorial/index.html#/8"
+                "helpUrl": "https://paol-imi.github.io/the-aviator/tutorial/#/8"
             }
         },
         'over': {
@@ -114,7 +114,7 @@ Blockly.Gamepad.init({
                 "output": "Boolean",
                 "style": "logic_blocks",
                 "tooltip": "Is the airplane over a block of the chosen color?",
-                "helpUrl": "file:///C:/Users/paolo/Desktop/the-aviator/tutorial/index.html#/9"
+                "helpUrl": "https://paol-imi.github.io/the-aviator/tutorial/#/9"
             }
         }
     },
