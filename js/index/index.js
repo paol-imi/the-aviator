@@ -1,8 +1,8 @@
 /* --- Inputs --- */
 Blockly.Gamepad['INPUTS'] = {
-    'UP': '0',
+    'FORWARD': '0',
     'RIGHT': '1',
-    'DOWN': '2',
+    'BACKWARD': '2',
     'LEFT': '3'
 }
 
@@ -21,8 +21,8 @@ Blockly.Gamepad.init({
                     'type': 'field_dropdown',
                     'name': 'DIRECTION',
                     'options': [
-                        ['up ↑', Blockly.Gamepad['INPUTS']['UP']],
-                        ['down ↓', Blockly.Gamepad['INPUTS']['DOWN']]
+                        ['forward', Blockly.Gamepad['INPUTS']['FORWARD']],
+                        ['backward', Blockly.Gamepad['INPUTS']['BACKWARD']]
                     ]
                 }],
                 "previousStatement": null,

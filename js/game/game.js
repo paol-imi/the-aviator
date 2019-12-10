@@ -303,7 +303,7 @@ const Game = class {
 
         request.data = [
             canMove, // can move
-            direction == Blockly.Gamepad['INPUTS']['UP'],
+            direction == Blockly.Gamepad['INPUTS']['FORWARD'],
             offset.x, // x
             offset.y, // z
             oldY, // old y
