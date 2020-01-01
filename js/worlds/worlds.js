@@ -47,7 +47,7 @@ const Worlds = [
                             x: 4,
                             y: 1,
                             // cell blocks
-                            // 0 => colors.blocks[0], 0 => colors.blocks[1]
+                            // 0 => colors.blocks[0], 1 => colors.blocks[1]
                             blocks: [0, 1]
                         }],
                         // cells when stage finishes
