@@ -56,7 +56,7 @@ const Gamepad = class {
             back) this.jsonManager.loadPrior();
 
         // if the request is not old and magicJson is enabled
-        if (this['magicJson'] && old) {
+        if (this['magicJson'] && old && request.method != Gamepad['STATES']['COMPLETED']) {
             // if it's a backward request
             if (back)
                 // unload the changes
@@ -77,7 +77,7 @@ const Gamepad = class {
         ) this.state = request.method;
 
         // if there's the json manager and the request is not old the changes are saved
-        if (this['magicJson'] && !old)
+        if (this['magicJson'] && !old && request.method != Gamepad['STATES']['COMPLETED'])
             this.jsonManager.commit();
 
         // return the game result
@@ -2504,11 +2504,8 @@ Gamepad.JsonManager = class {
     }
 }
 
-/* load the setting */
-Gamepad.setting();
-
 /* Global */
-(function () {
+;(function () {
 
     // Establish the root object, `window` in the browser, or `global` on the server.
     var root = this;
@@ -2526,3 +2523,6 @@ Gamepad.setting();
             Blockly.Gamepad = Gamepad;
     }
 })();
+
+/* load the setting */
+Gamepad.setting();
