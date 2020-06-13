@@ -1,10 +1,24 @@
-# The aviator 🎮
 
-<img src="images/screens/worlds.gif" width="50%"><img src="images/screens/game.gif" width="50%">
+<div align="center">
+    <img src="images/aviator/logo.png" width="75%" />
+</div>
 
-# What is it? 📘
+# The Game 🎮
 
-### This is a game designed for `students` 👨‍🎓 as a first approach to `programming` 💻. <br> Read the [tutorial](https://paol-imi.github.io/the-aviator/tutorial/#/) and try the game [here](https://paol-imi.github.io/the-aviator/)!
+**Do you like challenges? Play a `coding Game` that test your `skills` in creating algorithms. The proposed challenges have different difficulty levels, which make the game suitable for both beginner and experienced programmers.**
+
+**What are you waiting for? Test yourself and challenge friends and colleagues 😎.**
+
+- **[Online Game](https://paol-imi.github.io/the-aviator/)**
+- **[Tutorial](https://paol-imi.github.io/the-aviator/tutorial/#/)**
+
+<div align="center">
+    <img src="images/screens/worlds.gif" width="49.5%" /><img width="1%" /><img src="images/screens/game.gif" width="49.5%" />
+</div>
+
+<br />
+
+**As a computer engineering student and creator of this project, I would recommend tools like this as `educational`👨‍🎓 support in schools and universities. Thanks to targeted design choices and an advanced code debugging system _(with time travel)_, The Game tries to provide the best developer experience and guide the student's `reasoning` in each challenge.**
 
 <br>
 
@@ -22,7 +36,7 @@
 
 # Built with 🛠️
 
-### This game is built on [Blockly](https://github.com/google/blockly) using [blockly-gamepad](https://github.com/Paol-imi/blockly-gamepad)
+**This Game is built on [Blockly](https://github.com/google/blockly) using [blockly-gamepad](https://github.com/Paol-imi/blockly-gamepad)**.
 
 <a href="https://github.com/google/blockly">
     <img src="images/blockly/logo_built_on.svg" width="60%">
@@ -33,7 +47,7 @@
 
 <br>
 
-# Special thanks 🙏
+# Special thanks 🤝
 
--   Amazing sprite 😎 made by [Codedrops](https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/)  <br>
--   Gamepad icon made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [www.flaticon.com](https://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0)
+-   **Amazing Aviator sprite made by [Karim Maaloul](https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/)**  <br>
+-   **Gamepad icon made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [www.flaticon.com](https://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0)**
