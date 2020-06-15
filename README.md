@@ -23,7 +23,7 @@
 <br>
 
 # Worlds 🌍
--   `BEGINNER'S FOREST` 🌲 - Designed for beginners
+-   `BEGINNERS' FOREST` 🌲 - Designed for beginners
     -
 -   `PROGRAMMERS' FARM` 🚜 - Designed for beginners
     -
