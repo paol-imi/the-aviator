@@ -922,6 +922,15 @@
 
             return originalBlocklyContextMenuPopulate.apply(Blockly.ContextMenu, [options, rtl]);
         }
+
+        // Remove the context menu of the functions to avoid the use of variables
+        Blockly.Blocks.procedures_callnoreturn.contextMenu = false
+        Blockly.Blocks.procedures_callreturn.contextMenu = false
+        Blockly.Blocks.procedures_defnoreturn.contextMenu = false
+        Blockly.Blocks.procedures_defreturn.contextMenu = false
+        Blockly.Blocks.procedures_ifreturn.contextMenu = false
+        Blockly.Blocks.procedures_mutatorarg.contextMenu = false
+        Blockly.Blocks.procedures_mutatorcontainer.contextMenu = false
     </script>
 
     <!--github link-->
