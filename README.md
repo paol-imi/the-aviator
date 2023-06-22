@@ -1,4 +1,3 @@
-
 <div align="center">
     <img src="images/aviator/logo.png" width="75%" />
 </div>
@@ -23,25 +22,22 @@
 <br>
 
 # Worlds 🌍
--   `BEGINNERS' FOREST` 🌲 - Designed for beginners
-    -
--   `PROGRAMMERS' FARM` 🚜 - Designed for beginners
-    -
--   `RECURSIVE VOLCANO` 🌋 - Designed for advanced students and teachers
-    -
--   `IMPOSSIBLE OCEAN` 🐳 - Not even teachers can solve this😎
-    -
+
+- ## `BEGINNERS' FOREST` 🌲 - Designed for beginners
+- ## `PROGRAMMERS' FARM` 🚜 - Designed for beginners
+- ## `RECURSIVE VOLCANO` 🌋 - Designed for advanced students and teachers
+- ## `IMPOSSIBLE OCEAN` 🐳 - Not even teachers can solve this😎
 
 <br>
 
 # Built with 🛠️
 
-**This Game is built on [Blockly](https://github.com/google/blockly) using [blockly-gamepad](https://github.com/Paol-imi/blockly-gamepad)**.
+**This Game is built on [Blockly](https://github.com/google/blockly) using [blockly-gamepad](https://github.com/paol-imi/blockly-gamepad)**.
 
 <a href="https://github.com/google/blockly">
     <img src="images/blockly/logo_built_on.svg" width="60%">
 </a>
-<a href="https://github.com/Paol-imi/blockly-gamepad">
+<a href="https://github.com/paol-imi/blockly-gamepad">
     <img src="images/logo/icon.svg" width="25%">
 </a>
 
@@ -49,5 +45,5 @@
 
 # Special thanks 🤝
 
--   **Amazing Aviator sprite made by [Karim Maaloul](https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/)**  <br>
--   **Gamepad icon made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [www.flaticon.com](https://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0)**
+- **Amazing Aviator sprite made by [Karim Maaloul](https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/)** <br>
+- **Gamepad icon made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [www.flaticon.com](https://www.flaticon.com) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0)**
